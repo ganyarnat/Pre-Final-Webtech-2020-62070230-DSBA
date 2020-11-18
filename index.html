@@ -3,96 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500&display=swap" rel="stylesheet">
-    <title>ezquiz</title>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>Search</title>
 </head>
 <style>
-    body {
-        font-family: 'Playfair Display', serif;
-    }
-    .container {
-        position: absolute;
-        left : 200px;
-        top: 50px;
+    .container{
+        padding: 50px;
     }
 </style>
 <body>
-    <div class="container"> 
-        <div id="row" class="row">
-        <script>
-            let requestURL = 'ezquiz.json'; 
-            let request = new XMLHttpRequest(); 
-            request.onreadystatechange = function () { 
-                if (request.readyState == 3 && request.status == 200) {             
-                    dataReportStatus(JSON.parse(request.responseText));            
-                } }; 
-            request.open("GET", requestURL, true); 
-            request.send(); 
-            
-            function dataReportStatus(data) { 
-                for (let i = 0; i < data.ezquiz.tracks.length; i++) {
-                    var call = document.createElement("div")
-
-                    var call2 = document.createElement("div")
-                    call2.style.border = "1px solid LightGray"
-                    call2.style.borderRadius = "5px"
-                    call2.style.marginTop = "100px"
-                    call2.style.height = "400px"
-                    call.appendChild(call2)
-
-                    call.setAttribute('class', 'col-sm-4')
-                    var row = document.getElementById("row")
-                    row.appendChild(call)
-                    var poster = document.createElement("img")
-                    poster.src = data.ezquiz.tracks.url[i].poster
-                    poster.style.width = "640px"
-                    poster.style.marginTop = "-35px"
-                    poster.style.marginLeft = "30px"
-                    call.appendChild(poster)
-                    call2.appendChild(poster)
-
-                    var music = document.createElement("p")
-                    music.innerText = data.ezquiz.tracks.name[i].music
-                    music.style.fontSize = "18px"
-                    music.style.textAlign = "center"
-                    music.style.marginTop = "10px"
-                    call.appendChild(music)
-                    call2.appendChild(music)
-
-                    var art = document.createElement("p")
-                    art.innerText = "Release date : " + data.ezquiz.tracks.artists[i].art
-                    art.style.fontSize = "14px"
-                    art.style.marginTop = "-3px"
-                    art.style.textAlign = "center"
-                    call.appendChild(art)
-                    call2.appendChild(art)
-
-                    var day = document.createElement("p")
-                    day.innerText = data.ezquiz.tracks.release_date[i].day
-                    day.style.fontSize = "18px"
-                    day.style.textAlign = "center"
-                    day.style.marginTop = "10px"
-                    call.appendChild(day)
-                    call2.appendChild(day)
-
-                    var country = document.createElement("p")
-                    country.innerText = "Release date : " + data.ezquiz.tracks.count(available_markets[i])[i].country
-                    country.style.fontSize = "14px"
-                    country.style.marginTop = "-3px"
-                    country.style.textAlign = "center"
-                    call.appendChild(country)
-                    call2.appendChild(country)
-                }             
-            }
-        </script> 
+    <div class="container">
+    <form id="showmsg" action="show.php" method="post">
+        <div class="form-group">
+        <label>ระบุคำค้นหา</label><br>
+        <input type="text" id="search" placeholder="Search" name="search" class="form-control" style="width: 75%;"/>
         </div>
+
+        <div class="form-group">
+            <input type="submit" name="submit" class="btn btn-default" value="ค้นหา" style="width: 15%;">
+        </div>
+
+        </form>
     </div>
 </body>
 </html>
